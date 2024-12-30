@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Przydziel zadanie - Sylwester</title>
+    <style>
+        /* Stylizacja ogólna */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ff9dff, #ff4d4d);
+            color: white;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px #ff4d4d;
+        }
+        p {
+            font-size: 1em;
+            margin-bottom: 20px;
+        }
+        input, button {
+            padding: 15px;
+            font-size: 1em;
+            margin: 10px 0;
+            border: none;
+            border-radius: 25px;
+            outline: none;
+            width: 100%;
+            max-width: 300px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #ff4d4d;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        button:hover {
+            background-color: #ff9dff;
+            transform: scale(1.1);
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #fff4e6;
+            text-shadow: 1px 1px 2px #ff4d4d;
+        }
+        footer {
+            margin-top: 30px;
+            font-size: 0.8em;
+            color: #ffe6e6;
+        }
+        footer a {
+            color: #ff4d4d;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎉 Sylwestrowe wyzwania! 🎆</h1>
+    <p>Wpisz swoje imię, aby otrzymać zadanie na dzisiejszy wieczór:</p>
+    <form id="taskForm">
+        <input type="text" id="name" placeholder="Wpisz swoje imię" required>
+        <button type="submit">🎯 Przydziel zadanie</button>
+    </form>
+    <div id="taskResult" class="result"></div>
+
+    <footer>
+        © 2024 Sylwester z zadaniami | Stworzono z ❤️ na Nowy Rok!
+    </footer>
+
+    <script>
+        // Zadania przypisane do imion
+        const tasks = {
+            "Pani Domu": ["Rzuć się na Martę :P"],
+            "Marta": ["Pocałuj Zuzię jako New Year Eve's Kiss"],
+            "Zuzia": ["Zaśpiewaj dla obecnych największy hit Sióstr Godlewskich"],
+            "Ania": ["Wypij dwa szoty czystej wódki"],
+            "Kajetan": ["Rzuć swój najlepszy tekst na podryw do wybranej osoby"],
+            "Tomek": ["Pokaż swoje najbardziej żenujące zdjęcie w telefonie"],
+            "Wiki": ["Wypij szota bez użycia rąk"],
+            "Oliwia": ["Napisz do byłego crusha życzenia sylwestrowe"],
+            "Madzia": ["Zaproś na randkę wybranego przez nas mężczyznę"],
+            "Julka": ["Powiedz Kajetanowi coś miłego"]
+        };
+
+        // Funkcja przypisująca zadanie
+        document.getElementById("taskForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const name = document.getElementById("name").value.trim();
+
+            if (tasks[name]) {
+                const task = tasks[name][Math.floor(Math.random() * tasks[name].length)];
+                document.getElementById("taskResult").textContent = `🎉 Twoje zadanie to: ${task}`;
+            } else {
+                document.getElementById("taskResult").textContent = "❌ Nie znaleziono takiego imienia. Spróbuj ponownie!";
+            }
+
+            // Czyszczenie pola wejściowego
+            document.getElementById("name").value = '';
+        });
+    </script>
+</body>
+</html>
